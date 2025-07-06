@@ -11,6 +11,7 @@ export const HeaderLayout = () => {
     setShowDropdown(!showDropdown);
     localStorage.setItem("isAuth", "false");
     navigate("/");
+    window.location.reload();
   };
   const navigate = useNavigate();
 
