@@ -1,5 +1,5 @@
 import type { UseFormRegisterReturn } from "react-hook-form";
-import type { ButtonVariant, InputType, VideoDetails } from "./types";
+import type { ButtonVariant, Content, InputType } from "./types";
 import type { ReactNode, FormHTMLAttributes } from "react";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -26,12 +26,6 @@ export interface InputProps {
   [key: string]: any;
 }
 
-export interface CourseDetailsProps {
-  header: string;
-  isShow?: boolean;
-  subHeader: Record<string, VideoDetails>;
-}
-
 export interface showProductProps {
-  contents: Record<string, any>[];
+  contents: Content[];
 }

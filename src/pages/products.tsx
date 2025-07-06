@@ -6,8 +6,10 @@ import { FooterLayout } from "../layouts/footer";
 import { HeaderLayout } from "../layouts/header";
 import { ShowProductComponent } from "../components/showProduct";
 import { PaginationUI } from "../components/UIs/pagination";
+import { getData } from "../services/getData";
 
 export const ProductsPage = () => {
+  const data = getData().getRandomizeData(8).data;
   const categoryContent: Record<string, React.ReactNode> = {
     "1": (
       <div className="ml-1 flex flex-row items-center justify-start gap-5">
@@ -35,86 +37,6 @@ export const ProductsPage = () => {
     ),
   };
 
-  const contents = [
-    {
-      id: 1,
-      contentImage: "assets/contents/content1.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar1.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-    {
-      id: 2,
-      contentImage: "assets/contents/content2.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar2.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-    {
-      id: 3,
-      contentImage: "assets/contents/content3.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar3.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-    {
-      id: 4,
-      contentImage: "assets/contents/content4.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar4.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-    {
-      id: 5,
-      contentImage: "assets/contents/content5.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar5.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-    {
-      id: 6,
-      contentImage: "assets/contents/content6.jpg",
-      title: "Big Auditor Financial Analyst",
-      description:
-        "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
-      avatar: "assets/contents/avatar6.png",
-      name: "Jena Ortega",
-      position: "Senior accountant di Gojek",
-      rating: 3.5,
-      reviewCount: 86,
-      price: "Rp 300K",
-    },
-  ];
   return (
     <>
       <HeaderLayout />
@@ -185,7 +107,7 @@ export const ProductsPage = () => {
               <img className="absolute right-3 top-[9px]" src="/assets/search.png" />
             </div>
           </div>
-          <ShowProductComponent contents={contents} />
+          <ShowProductComponent contents={data} />
           <PaginationUI />
         </div>
       </div>
