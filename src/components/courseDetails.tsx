@@ -14,7 +14,12 @@ export const CourseDetailsComponent: React.FC<CourseDetail> = ({
         onClick={() => setShowSubheader(!isShowSubheader)}
       >
         <h3 className="text-bodyLarge font-bold text-[#3ECF4C]">{header}</h3>
-        <img className="h-[15px] w-[12px]" src="/assets/right-arrow.png" />
+        <img
+          className={`h-[15px] w-[12px] transition-transform duration-200 ${
+            isShowSubheader ? "rotate-0" : "rotate-90"
+          }`}
+          src="/assets/right-arrow.png"
+        />
       </div>
       {Object.entries(subHeader).map((value, index) => (
         <div

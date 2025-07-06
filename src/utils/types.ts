@@ -2,6 +2,10 @@ export type Variant = "login" | "register";
 export type ButtonVariant = "primary" | "secondary" | "tertiary" | "quaternary";
 export type InputType = "text" | "email" | "password" | "phone";
 
+export type CheckboxUIProps = {
+  variant?: "square" | "round";
+};
+
 export type LoginFormValues = {
   email: string;
   password: string;
@@ -29,8 +33,13 @@ export type CategoryProps = {
   width?: string;
   title: React.ReactNode;
   titleClassName?: string;
-  content: Record<string, React.ReactNode>;
+  content: CategoryContent[];
   contentClassName?: string;
+};
+
+export type CategoryContent = {
+  element: React.ReactNode;
+  func: () => void;
 };
 
 export type RegisterFormValues = {

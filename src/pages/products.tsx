@@ -7,35 +7,88 @@ import { HeaderLayout } from "../layouts/header";
 import { ShowProductComponent } from "../components/showProduct";
 import { PaginationUI } from "../components/UIs/pagination";
 import { getData } from "../services/getData";
+import type { CategoryContent, Content } from "../utils/types";
+import { useEffect, useState } from "react";
 
 export const ProductsPage = () => {
-  const data = getData().getRandomizeData(8).data;
-  const categoryContent: Record<string, React.ReactNode> = {
-    "1": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Pemasaran
-      </div>
-    ),
-    "2": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Digital & Teknologi
-      </div>
-    ),
-    "3": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Pengembangan Diri
-      </div>
-    ),
-    "4": (
-      <div className="ml-1 flex flex-row items-center justify-start gap-5">
-        <CheckboxUI />
-        Manajemen Bisnis
-      </div>
-    ),
+  const [data, setData] = useState<Content[]>([]);
+
+  useEffect(() => {
+    setData(getData().getRandomizeData(8).data);
+  }, []);
+
+  const filter = (filter: string) => {
+    console.log(filter);
+    setData(getData().getRandomizeData(8).data);
   };
+
+  const categoryContent: CategoryContent[] = [
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI />
+          Pemasaran
+        </div>
+      ),
+      func: () => filter("pemasaran"),
+    },
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI />
+          Digital & Teknologi
+        </div>
+      ),
+      func: () => filter("digital dan teknologi"),
+    },
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI />
+          Pengembangan Diri
+        </div>
+      ),
+      func: () => filter("pengembangan diri"),
+    },
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI />
+          Manajemen Bisnis
+        </div>
+      ),
+      func: () => filter("manajemen bisnis"),
+    },
+  ];
+
+  const durasiContent: CategoryContent[] = [
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI variant="round" />
+          Kurang dari 4 Jam
+        </div>
+      ),
+      func: () => filter("< 4"),
+    },
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI variant="round" />4 - 8 Jam
+        </div>
+      ),
+      func: () => filter("4 < x < 8"),
+    },
+    {
+      element: (
+        <div className="ml-1 flex flex-row items-center justify-start gap-5">
+          <CheckboxUI variant="round" />
+          Lebih dari 8 Jam
+        </div>
+      ),
+      func: () => filter("> 8"),
+    },
+  ];
 
   return (
     <>
@@ -86,7 +139,7 @@ export const ProductsPage = () => {
                   </div>
                 }
                 titleClassName="text-[#3ECF4C]"
-                content={categoryContent}
+                content={durasiContent}
                 contentClassName="text-[#3A3541AD] hover:text-[#3ECF4C] hover:text-decoration-none"
               />
             </div>

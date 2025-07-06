@@ -19,6 +19,10 @@ export const RegisterPage = () => {
     if (email) {
       return window.confirm("Your Email Is Already Registered.");
     }
+    if (data.password !== data.passwordConfirmation) {
+      window.confirm("Your password Is Not Match");
+    }
+    
     localStorage.setItem(data.email, data.password);
     window.confirm("Registration is Succeded.");
     navigate("/login");
