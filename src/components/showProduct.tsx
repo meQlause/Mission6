@@ -10,13 +10,12 @@ export const ShowProductComponent: React.FC<showProductProps> = ({ contents }) =
   const redirect = (id: number) => {
     navigate(`/product-details/${id}`);
   };
-  console.log(contents);
 
   return (
     <div className="mt-5 box-border grid w-full grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5 py-[20px_10px]">
       {!isMobile
         ? contents.map((item) => (
-            <DefaultLayout className="rounded-md">
+            <DefaultLayout key={item.id} className="rounded-md">
               <div
                 className="flex cursor-pointer flex-col gap-1 p-4"
                 onClick={() => {
@@ -53,7 +52,7 @@ export const ShowProductComponent: React.FC<showProductProps> = ({ contents }) =
             </DefaultLayout>
           ))
         : contents.map((item) => (
-            <DefaultLayout className="rounded-md p-4">
+            <DefaultLayout key={item.id} className="rounded-md p-4">
               <div
                 className="flex cursor-pointer flex-row gap-3"
                 onClick={() => {

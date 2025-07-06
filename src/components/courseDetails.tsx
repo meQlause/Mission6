@@ -1,13 +1,12 @@
 import { useState } from "react";
-import type { CourseDetailsProps } from "../utils/interfaces";
+import type { CourseDetail } from "../utils/types";
 
-export const CourseDetailsComponent: React.FC<CourseDetailsProps> = ({
+export const CourseDetailsComponent: React.FC<CourseDetail> = ({
   header,
   subHeader,
   isShow = false,
 }) => {
   const [isShowSubheader, setShowSubheader] = useState<boolean>(isShow);
-
   return (
     <div className="mb-4 flex flex-col gap-3">
       <div
@@ -17,8 +16,9 @@ export const CourseDetailsComponent: React.FC<CourseDetailsProps> = ({
         <h3 className="text-bodyLarge font-bold text-[#3ECF4C]">{header}</h3>
         <img className="h-[15px] w-[12px]" src="/assets/right-arrow.png" />
       </div>
-      {Object.entries(subHeader).map((value) => (
+      {Object.entries(subHeader).map((value, index) => (
         <div
+          key={index}
           className={`${isShowSubheader ? "flex" : "hidden"} justify-between rounded-md border p-3`}
         >
           {value[0]}

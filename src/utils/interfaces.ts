@@ -29,3 +29,4 @@ export interface InputProps {
 export interface showProductProps {
   contents: Content[];
 }
+

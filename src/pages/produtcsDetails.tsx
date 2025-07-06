@@ -109,6 +109,7 @@ export const ProductsDetailsPage = () => {
                 <div className="flex flex-col gap-3">
                   {courseDetails.map((value, index) => (
                     <CourseDetailsComponent
+                      key={index}
                       header={value.header}
                       subHeader={value.subHeader}
                       isShow={index === 0 && true}

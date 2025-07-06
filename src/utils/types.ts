@@ -68,6 +68,12 @@ export type ContentDetails = {
   courseDetails: CourseDetail[];
 };
 
+export type CourseDetail = {
+  header: string;
+  subHeader: CourseSubHeader;
+  isShow?: boolean;
+};
+
 type CourseSubHeaderItem = {
   kind: string;
   duration: string;
@@ -75,11 +81,6 @@ type CourseSubHeaderItem = {
 
 type CourseSubHeader = {
   [topic: string]: CourseSubHeaderItem;
-};
-
-type CourseDetail = {
-  header: string;
-  subHeader: CourseSubHeader;
 };
 
 type TutorDetail = {
