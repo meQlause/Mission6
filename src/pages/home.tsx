@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ButtonUI } from "../components/UIs/button";
 import { DividerUI } from "../components/UIs/divider";
 import { TextInput } from "../components/UIs/input";
@@ -8,10 +8,19 @@ import { FooterLayout } from "../layouts/footer";
 import { ShowProductComponent } from "../components/showProduct";
 import { ImageAsBackgroudUI } from "../components/UIs/imageAsBackground";
 import { getData } from "../services/getData";
+import { useNavigate } from "react-router-dom";
+import type { Content } from "../utils/types";
 
 export const HomePage = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [contents, setContents] = useState<Content[]>(getData().getAllData().data);
+  const navigate = useNavigate();
   const ulRef = useRef<HTMLUListElement>(null);
-  const contents = getData().getAllData().data;
+
+  const selectCategory = (selected: string) => {
+    setSelectedCategory(selected);
+    setContents(getData().getRandomizeData([3, 6, 9][Math.floor(Math.random() * 3)]).data);
+  };
 
   return (
     <>
@@ -27,7 +36,10 @@ export const HomePage = () => {
               berkualitas tinggi. Tidak hanya itu, Anda juga dapat berpartisipasi dalam latihan
               interaktif yang akan meningkatkan pemahaman Anda.
             </p>
-            <ButtonUI className="z-20 mt-4 max-w-96 px-2 py-3 text-bodySmall md:mt-5 md:text-bodyMedium">
+            <ButtonUI
+              onClick={() => navigate("/products")}
+              className="z-20 mt-4 max-w-96 px-2 py-3 text-bodySmall md:mt-5 md:text-bodyMedium"
+            >
               Temukan Video Course untuk Dipelajari!
             </ButtonUI>
           </div>
@@ -57,15 +69,27 @@ export const HomePage = () => {
               (category) => (
                 <li
                   key={category}
-                  className={`cursor-pointer font-sans font-medium hover:text-red-600 ${category === "Semua Kelas" ? "text-red-600" : ""}`}
-                  onClick={() => console.log(category)}
+                  className={`cursor-pointer font-sans font-medium hover:text-red-600 ${selectedCategory ? category === selectedCategory && "text-red-600" : category === "Semua Kelas" && "text-red-600"} flex flex-col gap-3`}
+                  onClick={() => selectCategory(category)}
                 >
                   {category}
+                  <div
+                    className={
+                      selectedCategory
+                        ? category === selectedCategory
+                          ? "block"
+                          : "hidden"
+                        : category === "Semua Kelas"
+                          ? "block"
+                          : "hidden"
+                    }
+                  >
+                    <DividerUI width="30px" color="#dc2626" thick="5px" />
+                  </div>
                 </li>
               )
             )}
           </ul>
-          <DividerUI width="5%" color="#dc2626" thick="5px" />
           <ShowProductComponent contents={contents} />
         </div>
       </div>

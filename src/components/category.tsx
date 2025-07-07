@@ -10,12 +10,10 @@ export const CategoryComponent = ({
   contentClassName = "",
 }: CategoryProps) => {
   const [showCategory, setShowCategory] = useState<boolean>(false);
-  const [arrowRotation, setArrowRotation] = useState<number>(90);
   const isMobile = useIsMobile();
 
   const handleCategoryToggle = () => {
     setShowCategory(!showCategory);
-    setArrowRotation(showCategory ? 90 : 0);
   };
 
   return (
@@ -27,10 +25,9 @@ export const CategoryComponent = ({
         >
           <div className={`text-heading6 font-bold ${titleClassName}`}>{title}</div>
           <img
-            className={`block h-[15px] transition-transform duration-200 md:hidden`}
+            className={`${showCategory ? "rotate-0" : "rotate-90"} block h-[15px] transition-transform duration-200 md:hidden`}
             src="/assets/right-arrow.png"
             alt="Logo"
-            style={{ transform: `rotate(${arrowRotation}deg)` }}
           />
         </div>
         <ul

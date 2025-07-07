@@ -4,6 +4,7 @@ export type InputType = "text" | "email" | "password" | "phone";
 
 export type CheckboxUIProps = {
   variant?: "square" | "round";
+  id?: string;
 };
 
 export type LoginFormValues = {

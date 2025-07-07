@@ -705,8 +705,9 @@ const contents: Content[] = [
 ];
 
 export class DataMockup {
-  mainData: Content[];
+  private mainData: Content[];
   data: Content[];
+
   constructor() {
     this.mainData = contents;
     this.data = [];
